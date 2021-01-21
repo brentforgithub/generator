@@ -388,14 +388,8 @@ public class FullyQualifiedJavaType implements
 
             switch (baseQualifiedName) {
                 case "byte":  //$NON-NLS-1$
-                    primitive = true;
-                    primitiveTypeWrapper = PrimitiveTypeWrapper.getByteInstance();
-                    break;
-                case "short":  //$NON-NLS-1$
-                    primitive = true;
-                    primitiveTypeWrapper = PrimitiveTypeWrapper.getShortInstance();
-                    break;
-                case "int":  //$NON-NLS-1$
+                case "short":
+                case "int":
                     primitive = true;
                     primitiveTypeWrapper = PrimitiveTypeWrapper.getIntegerInstance();
                     break;
