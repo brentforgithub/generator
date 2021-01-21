@@ -5,19 +5,16 @@ import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.Plugin;
 import org.mybatis.generator.api.dom.DefaultJavaFormatter;
 import org.mybatis.generator.config.Context;
-import org.mybatis.generator.plugins.ext.generator.VoCommentGenerator;
-import org.mybatis.generator.plugins.ext.generator.VoGeneratedJavaFile;
-import org.mybatis.generator.plugins.ext.generator.VoGenerator;
+import org.mybatis.generator.plugins.ext.generator.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class VoPlugin implements Plugin {
-
+public class PoPlugin  implements Plugin {
     private Context context;
 
-    private VoCommentGenerator voCommentGenerator = new VoCommentGenerator();
+    private PoCommentGenerator poCommentGenerator = new PoCommentGenerator();
 
     private Properties properties;
     private List<String> warnings;
@@ -26,24 +23,24 @@ public class VoPlugin implements Plugin {
 
     public List<GeneratedJavaFile> contextGenerateAdditionalJavaFiles(IntrospectedTable introspectedTable) {
         List<GeneratedJavaFile> answer = new ArrayList<>();
-        VoGenerator vo = new VoGenerator(properties.getProperty("targetProject"));
-        vo.setIntrospectedTable(introspectedTable);
-        vo.setWarnings(warnings);
-        vo.setContext(context);
+        PoGenerator po = new PoGenerator(properties.getProperty("targetProject"));
+        po.setIntrospectedTable(introspectedTable);
+        po.setWarnings(warnings);
+        po.setContext(context);
+        po.setTargetPackage(properties.getProperty("targetPackage"));
 
-        voCommentGenerator.addConfigurationProperties(context.getCommentGeneratorConfiguration().getProperties());
-        vo.setCommentGenerator(voCommentGenerator);
-        vo.setTargetPackage(properties.getProperty("targetPackage"));
+        poCommentGenerator.addConfigurationProperties(context.getCommentGeneratorConfiguration().getProperties());
+        po.setCommentGenerator(poCommentGenerator);
         DefaultJavaFormatter defaultJavaFormatter = new DefaultJavaFormatter();
         defaultJavaFormatter.setContext(context);
 
-        VoGeneratedJavaFile voGeneratedJavaFile = new VoGeneratedJavaFile(
-                vo.getCompilationUnits().get(0),
+        PoGeneratedJavaFile poGeneratedJavaFile = new PoGeneratedJavaFile(
+                po.getCompilationUnits().get(0),
                 properties.getProperty("targetProject"), defaultJavaFormatter);
 
 
         List<GeneratedJavaFile> voList = new ArrayList<>();
-        voList.add(voGeneratedJavaFile);
+        voList.add(poGeneratedJavaFile);
         return voList;
     }
 
@@ -70,6 +67,4 @@ public class VoPlugin implements Plugin {
         this.warnings = warnings;
         return true;
     }
-
-
 }

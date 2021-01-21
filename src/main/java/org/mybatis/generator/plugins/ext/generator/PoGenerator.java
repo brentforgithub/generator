@@ -12,14 +12,13 @@ import org.mybatis.generator.plugins.ext.util.PluginJavaBeansUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mybatis.generator.internal.util.JavaBeansUtil.*;
-import static org.mybatis.generator.internal.util.messages.Messages.getString;
+import static org.mybatis.generator.internal.util.JavaBeansUtil.getJavaBeansField;
 
-public class VoGenerator extends BaseRecordGenerator {
+public class PoGenerator extends BaseRecordGenerator {
 
     private String targetPackage;
 
-    public VoGenerator(String project) {
+    public PoGenerator(String project) {
         super(project);
     }
 
@@ -45,7 +44,7 @@ public class VoGenerator extends BaseRecordGenerator {
         Plugin plugins = context.getPlugins();
 
         FullyQualifiedJavaType type = new FullyQualifiedJavaType(
-                targetPackage + "." + introspectedTable.getFullyQualifiedTable().getDomainObjectName() + "Vo");
+                targetPackage + "." + introspectedTable.getFullyQualifiedTable().getDomainObjectName());
         TopLevelClass topLevelClass = new TopLevelClass(type);
         topLevelClass.setVisibility(JavaVisibility.PUBLIC);
         commentGenerator.addJavaFileComment(topLevelClass);
@@ -56,19 +55,7 @@ public class VoGenerator extends BaseRecordGenerator {
             topLevelClass.addImportedType(superClass);
         }
         topLevelClass.addImportedType("lombok.Data");
-        topLevelClass.addImportedType("io.swagger.annotations.ApiModel");
-        topLevelClass.addImportedType("io.swagger.annotations.ApiModelProperty");
-
-
         topLevelClass.addAnnotation("@Data");
-
-        StringBuffer buffer = new StringBuffer();
-        buffer.append("@ApiModel(description = \"");
-        buffer.append(introspectedTable.getRemarks());
-        buffer.append("\")");
-        topLevelClass.addAnnotation(buffer.toString());
-
-
         commentGenerator.addModelClassComment(topLevelClass, introspectedTable);
 
         List<IntrospectedColumn> introspectedColumns = getColumnsInThisClass();
@@ -98,12 +85,6 @@ public class VoGenerator extends BaseRecordGenerator {
                     Plugin.ModelClassType.BASE_RECORD)) {
                 topLevelClass.addField(field);
                 topLevelClass.addImportedType(field.getType());
-
-                buffer.setLength(0);
-                buffer.append("@ApiModelProperty(value = \"");
-                buffer.append(introspectedColumn.getRemarks());
-                buffer.append("\")");
-                field.addAnnotation(buffer.toString());
             }
 
 //            Method method = getJavaBeansGetter(introspectedColumn, context, introspectedTable);

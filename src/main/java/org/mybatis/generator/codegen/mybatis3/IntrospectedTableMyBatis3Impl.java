@@ -148,7 +148,8 @@ public class IntrospectedTableMyBatis3Impl extends IntrospectedTable {
             AbstractJavaGenerator javaGenerator = new BaseRecordGenerator(getModelProject());
             initializeAbstractGenerator(javaGenerator, warnings,
                     progressCallback);
-            javaGenerators.add(javaGenerator);
+            //TODO去掉默认生成的model
+            //javaGenerators.add(javaGenerator);
         }
 
         if (getRules().generateRecordWithBLOBsClass()) {
