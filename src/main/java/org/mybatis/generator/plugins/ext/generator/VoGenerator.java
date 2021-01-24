@@ -104,6 +104,13 @@ public class VoGenerator extends BaseRecordGenerator {
                 buffer.append(introspectedColumn.getRemarks());
                 buffer.append("\")");
                 field.addAnnotation(buffer.toString());
+
+                if(field.getType().getFullyQualifiedName().equals("java.util.Date")){
+                    topLevelClass.addImportedType("com.fasterxml.jackson.annotation.JsonFormat");
+                    buffer.setLength(0);
+                    buffer.append("@JsonFormat(pattern = \"yyyy-MM-dd HH:mm:ss\", timezone = \"GMT+8\")");
+                    field.addAnnotation(buffer.toString());
+                }
             }
 
 //            Method method = getJavaBeansGetter(introspectedColumn, context, introspectedTable);
