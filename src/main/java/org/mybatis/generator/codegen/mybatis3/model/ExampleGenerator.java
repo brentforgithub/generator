@@ -443,7 +443,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
                 .getStringInstance(), "condition")); //$NON-NLS-1$
         method.addBodyLine("if (condition == null) {"); //$NON-NLS-1$
         method
-                .addBodyLine("throw new RuntimeException(\"Value for condition cannot be null\");"); //$NON-NLS-1$
+                .addBodyLine("return;"); //$NON-NLS-1$
         method.addBodyLine("}"); //$NON-NLS-1$
         method.addBodyLine("criteria.add(new Criterion(condition));"); //$NON-NLS-1$
         if (criteriaLists.size() > 1) {
@@ -461,7 +461,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
                 .getStringInstance(), "property")); //$NON-NLS-1$
         method.addBodyLine("if (value == null) {"); //$NON-NLS-1$
         method.addBodyLine(
-                "throw new RuntimeException(\"Value for \" + property + \" cannot be null\");"); //$NON-NLS-1$
+                "return;"); //$NON-NLS-1$
         method.addBodyLine("}"); //$NON-NLS-1$
         method.addBodyLine("criteria.add(new Criterion(condition, value));"); //$NON-NLS-1$
         if (criteriaLists.size() > 1) {
@@ -481,7 +481,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
                 .getStringInstance(), "property")); //$NON-NLS-1$
         method.addBodyLine("if (value1 == null || value2 == null) {"); //$NON-NLS-1$
         method.addBodyLine(
-                "throw new RuntimeException(\"Between values for \" + property + \" cannot be null\");"); //$NON-NLS-1$
+                "return;"); //$NON-NLS-1$
         method.addBodyLine("}"); //$NON-NLS-1$
         method
                 .addBodyLine("criteria.add(new Criterion(condition, value1, value2));"); //$NON-NLS-1$
@@ -508,7 +508,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
                     .getStringInstance(), "property")); //$NON-NLS-1$
             method.addBodyLine("if (value == null) {"); //$NON-NLS-1$
             method.addBodyLine(
-                    "throw new RuntimeException(\"Value for \" + property + \" cannot be null\");"); //$NON-NLS-1$
+                    "return;"); //$NON-NLS-1$
             method.addBodyLine("}"); //$NON-NLS-1$
             method.addBodyLine(
                     "addCriterion(condition, new java.sql.Date(value.getTime()), property);"); //$NON-NLS-1$
@@ -522,9 +522,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
             method.addParameter(new Parameter(FullyQualifiedJavaType
                     .getStringInstance(), "property")); //$NON-NLS-1$
             method.addBodyLine("if (values == null || values.size() == 0) {"); //$NON-NLS-1$
-            method.addBodyLine(
-                    "throw new RuntimeException(\"Value list for \" + property + \"" //$NON-NLS-1$
-                    + " cannot be null or empty\");"); //$NON-NLS-1$
+            method.addBodyLine( "return;"); //$NON-NLS-1$
             method.addBodyLine("}"); //$NON-NLS-1$
             method.addBodyLine("List<java.sql.Date> dateList = new ArrayList<>();"); //$NON-NLS-1$
             method.addBodyLine("Iterator<Date> iter = values.iterator();"); //$NON-NLS-1$
@@ -547,8 +545,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
                     .getStringInstance(), "property")); //$NON-NLS-1$
             method.addBodyLine("if (value1 == null || value2 == null) {"); //$NON-NLS-1$
             method.addBodyLine(
-                    "throw new RuntimeException(\"Between values for \" + property + \"" //$NON-NLS-1$
-                    + " cannot be null\");"); //$NON-NLS-1$
+                    "return;"); //$NON-NLS-1$
             method.addBodyLine("}"); //$NON-NLS-1$
             method.addBodyLine(
                     "addCriterion(condition, new java.sql.Date(value1.getTime())," //$NON-NLS-1$
@@ -571,7 +568,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
                     .getStringInstance(), "property")); //$NON-NLS-1$
             method.addBodyLine("if (value == null) {"); //$NON-NLS-1$
             method.addBodyLine(
-                    "throw new RuntimeException(\"Value for \" + property + \" cannot be null\");"); //$NON-NLS-1$
+                    "return;"); //$NON-NLS-1$
             method.addBodyLine("}"); //$NON-NLS-1$
             method.addBodyLine(
                     "addCriterion(condition, new java.sql.Time(value.getTime()), property);"); //$NON-NLS-1$
@@ -586,8 +583,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
                     .getStringInstance(), "property")); //$NON-NLS-1$
             method.addBodyLine("if (values == null || values.size() == 0) {"); //$NON-NLS-1$
             method.addBodyLine(
-                    "throw new RuntimeException(\"Value list for \" + property + \"" //$NON-NLS-1$
-                    + " cannot be null or empty\");"); //$NON-NLS-1$
+                    "return;"); //$NON-NLS-1$
             method.addBodyLine("}"); //$NON-NLS-1$
             method.addBodyLine("List<java.sql.Time> timeList = new ArrayList<>();"); //$NON-NLS-1$
             method.addBodyLine("Iterator<Date> iter = values.iterator();"); //$NON-NLS-1$
@@ -609,9 +605,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
             method.addParameter(new Parameter(FullyQualifiedJavaType
                     .getStringInstance(), "property")); //$NON-NLS-1$
             method.addBodyLine("if (value1 == null || value2 == null) {"); //$NON-NLS-1$
-            method.addBodyLine(
-                    "throw new RuntimeException(\"Between values for \" + property + \"" //$NON-NLS-1$
-                    + " cannot be null\");"); //$NON-NLS-1$
+            method.addBodyLine("return;"); //$NON-NLS-1$
             method.addBodyLine("}"); //$NON-NLS-1$
             method.addBodyLine(
                     "addCriterion(condition, new java.sql.Time(value1.getTime())," //$NON-NLS-1$
@@ -949,7 +943,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
                 .getStringInstance(), "property")); //$NON-NLS-1$
         method.addBodyLine("if (value == null) {"); //$NON-NLS-1$
         method.addBodyLine(
-                "throw new RuntimeException(\"Value for \" + property + \" cannot be null\");"); //$NON-NLS-1$
+                "return;"); //$NON-NLS-1$
         method.addBodyLine("}"); //$NON-NLS-1$
 
         method.addBodyLine(
@@ -977,8 +971,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
         if (!introspectedColumn.getFullyQualifiedJavaType().isPrimitive()) {
             method.addBodyLine("if (value1 == null || value2 == null) {"); //$NON-NLS-1$
             method.addBodyLine(
-                    "throw new RuntimeException(\"Between values for \" + property + \"" //$NON-NLS-1$
-                    + " cannot be null\");"); //$NON-NLS-1$
+                    "return;"); //$NON-NLS-1$
             method.addBodyLine("}"); //$NON-NLS-1$
         }
 
