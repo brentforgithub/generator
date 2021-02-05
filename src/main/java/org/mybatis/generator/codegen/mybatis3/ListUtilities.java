@@ -41,8 +41,10 @@ public class ListUtilities {
     }
 
     public static List<IntrospectedColumn> removeIdentityAndGeneratedAlwaysColumns(List<IntrospectedColumn> columns) {
-        return columns.stream()
+        //不去掉id的insert
+        return columns;
+        /*return columns.stream()
                 .filter(ic -> !ic.isGeneratedAlways() && !ic.isIdentity())
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());*/
     }
 }
