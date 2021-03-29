@@ -1,5 +1,5 @@
 /*
- *    Copyright ${license.git.copyrightYears} the original author or authors.
+ *    Copyright 2006-2021 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -54,8 +54,8 @@ public class UpdateByPrimaryKeySelectiveMethodGenerator extends AbstractMethodGe
 
         method.addBodyLines(
                 fragmentGenerator.getSetEqualWhenPresentLines(introspectedTable.getNonPrimaryKeyColumns(),
-                        "    c", "    ", false)); //$NON-NLS-1$ //$NON-NLS-2$
-        method.addBodyLines(fragmentGenerator.getPrimaryKeyWhereClauseForUpdate("    ")); //$NON-NLS-1$
+                        "  c", "  ", false)); //$NON-NLS-1$ //$NON-NLS-2$
+        method.addBodyLines(fragmentGenerator.getPrimaryKeyWhereClauseForUpdate("  ")); //$NON-NLS-1$
 
         method.addBodyLine(");"); //$NON-NLS-1$
         return MethodAndImports.withMethod(method)

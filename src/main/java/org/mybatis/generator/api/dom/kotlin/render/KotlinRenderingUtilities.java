@@ -1,5 +1,5 @@
 /*
- *    Copyright ${license.git.copyrightYears} the original author or authors.
+ *    Copyright 2006-2021 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ public class KotlinRenderingUtilities {
 
     private KotlinRenderingUtilities() {}
 
-    public static final String KOTLIN_INDENT = "    "; //$NON-NLS-1$
+    public static final String KOTLIN_INDENT = "  "; //$NON-NLS-1$
 
     public static String renderModifiers(List<KotlinModifier> modifiers) {
         return modifiers.stream().map(KotlinModifier::getValue)
